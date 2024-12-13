@@ -34,12 +34,13 @@ export const Courses: CollectionConfig<'courses'> = {
     read: authenticatedOrPublished,
     update: authenticated,
   },
-  // This config controls what's populated by default when a post is referenced
+  // This config controls what's populated by default when a course is referenced
   // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
-  // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'posts'>
+  // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'courses'>
   defaultPopulate: {
     title: true,
     slug: true,
+    categories: true,
     meta: {
       image: true,
       description: true,
@@ -132,7 +133,36 @@ export const Courses: CollectionConfig<'courses'> = {
           ],
           label: 'Content',
         },
-
+        {
+          fields: [
+            {
+              name: 'relatedCourses',
+              type: 'relationship',
+              admin: {
+                position: 'sidebar',
+              },
+              filterOptions: ({ id }) => {
+                return {
+                  id: {
+                    not_in: [id],
+                  },
+                }
+              },
+              hasMany: true,
+              relationTo: 'courses',
+            },
+            {
+              name: 'categories',
+              type: 'relationship',
+              admin: {
+                position: 'sidebar',
+              },
+              hasMany: true,
+              relationTo: 'categories',
+            },
+          ],
+          label: 'Meta',
+        },
         {
           name: 'meta',
           label: 'SEO',

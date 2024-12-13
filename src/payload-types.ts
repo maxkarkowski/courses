@@ -12,7 +12,6 @@ export interface Config {
   };
   collections: {
     pages: Page;
-    posts: Post;
     media: Media;
     categories: Category;
     users: User;
@@ -29,7 +28,6 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
-    posts: PostsSelect<false> | PostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -341,13 +339,13 @@ export interface ArchiveBlock {
     [k: string]: unknown;
   } | null;
   populateBy?: ('collection' | 'selection') | null;
-  relationTo?: 'posts' | null;
+  relationTo?: 'courses' | null;
   categories?: (number | Category)[] | null;
   limit?: number | null;
   selectedDocs?:
     | {
-        relationTo: 'posts';
-        value: number | Post;
+        relationTo: 'courses';
+        value: number | Course;
       }[]
     | null;
   id?: string | null;
@@ -375,11 +373,14 @@ export interface Category {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts".
+ * via the `definition` "courses".
  */
-export interface Post {
+export interface Course {
   id: number;
   title: string;
+  start: string;
+  Organizer?: (number | null) | Organizer;
+  end?: string | null;
   content: {
     root: {
       type: string;
@@ -395,7 +396,7 @@ export interface Post {
     };
     [k: string]: unknown;
   };
-  relatedPosts?: (number | Post)[] | null;
+  relatedCourses?: (number | Course)[] | null;
   categories?: (number | Category)[] | null;
   meta?: {
     title?: string | null;
@@ -403,13 +404,6 @@ export interface Post {
     description?: string | null;
   };
   publishedAt?: string | null;
-  authors?: (number | User)[] | null;
-  populatedAuthors?:
-    | {
-        id?: string | null;
-        name?: string | null;
-      }[]
-    | null;
   slug?: string | null;
   slugLock?: boolean | null;
   updatedAt: string;
@@ -418,21 +412,14 @@ export interface Post {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "organizers".
  */
-export interface User {
+export interface Organizer {
   id: number;
-  name?: string | null;
+  title: string;
+  mail: string;
   updatedAt: string;
   createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -626,51 +613,21 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "courses".
+ * via the `definition` "users".
  */
-export interface Course {
+export interface User {
   id: number;
-  title: string;
-  start: string;
-  Organizer?: (number | null) | Organizer;
-  end?: string | null;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  meta?: {
-    title?: string | null;
-    image?: (number | null) | Media;
-    description?: string | null;
-  };
-  publishedAt?: string | null;
-  slug?: string | null;
-  slugLock?: boolean | null;
+  name?: string | null;
   updatedAt: string;
   createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "organizers".
- */
-export interface Organizer {
-  id: number;
-  title: string;
-  mail: string;
-  updatedAt: string;
-  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -687,8 +644,8 @@ export interface Redirect {
           value: number | Page;
         } | null)
       | ({
-          relationTo: 'posts';
-          value: number | Post;
+          relationTo: 'courses';
+          value: number | Course;
         } | null);
     url?: string | null;
   };
@@ -721,8 +678,8 @@ export interface Search {
   title?: string | null;
   priority?: number | null;
   doc: {
-    relationTo: 'posts';
-    value: number | Post;
+    relationTo: 'courses';
+    value: number | Course;
   };
   slug?: string | null;
   meta?: {
@@ -750,10 +707,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: number | Page;
-      } | null)
-    | ({
-        relationTo: 'posts';
-        value: number | Post;
       } | null)
     | ({
         relationTo: 'media';
@@ -955,36 +908,6 @@ export interface PagesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts_select".
- */
-export interface PostsSelect<T extends boolean = true> {
-  title?: T;
-  content?: T;
-  relatedPosts?: T;
-  categories?: T;
-  meta?:
-    | T
-    | {
-        title?: T;
-        image?: T;
-        description?: T;
-      };
-  publishedAt?: T;
-  authors?: T;
-  populatedAuthors?:
-    | T
-    | {
-        id?: T;
-        name?: T;
-      };
-  slug?: T;
-  slugLock?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
@@ -1120,6 +1043,8 @@ export interface CoursesSelect<T extends boolean = true> {
   Organizer?: T;
   end?: T;
   content?: T;
+  relatedCourses?: T;
+  categories?: T;
   meta?:
     | T
     | {

@@ -10,8 +10,8 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
         link: {
           type: 'custom',
           appearance: 'default',
-          label: 'All posts',
-          url: '/posts',
+          label: 'All courses',
+          url: '/courses',
         },
       },
       {
@@ -202,7 +202,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
                       format: 0,
                       mode: 'normal',
                       style: '',
-                      text: "Manage this site's pages and posts from the ",
+                      text: "Manage this site's pages and courses from the ",
                       version: 1,
                     },
                     {
@@ -522,7 +522,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
                   format: 0,
                   mode: 'normal',
                   style: '',
-                  text: 'Recent posts',
+                  text: 'Recent courses',
                   version: 1,
                 },
               ],
@@ -541,7 +541,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
                   format: 0,
                   mode: 'normal',
                   style: '',
-                  text: 'The posts below are displayed in an "Archive" layout building block which is an extremely powerful way to display documents on a page. It can be auto-populated by collection or by category, or posts can be individually selected. Pagination controls will automatically appear if the number of results exceeds the number of items per page.',
+                  text: 'The courses below are displayed in an "Archive" layout building block which is an extremely powerful way to display documents on a page. It can be auto-populated by collection or by category, or courses can be individually selected. Pagination controls will automatically appear if the number of results exceeds the number of items per page.',
                   version: 1,
                 },
               ],
@@ -559,7 +559,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
         },
       },
       populateBy: 'collection',
-      relationTo: 'posts',
+      relationTo: 'courses',
     },
     {
       blockName: 'CTA',
@@ -569,8 +569,8 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
           link: {
             type: 'custom',
             appearance: 'default',
-            label: 'All posts',
-            url: '/posts',
+            label: 'All courses',
+            url: '/courses',
           },
         },
       ],

@@ -5,15 +5,15 @@ import { contact as contactPageData } from './contact-page'
 import { home } from './home'
 import { image1 } from './image-1'
 import { image2 } from './image-2'
-import { post1 } from './post-1'
-import { post2 } from './post-2'
-import { post3 } from './post-3'
+import { course1 } from './course-1'
+import { course2 } from './course-2'
+import { course3 } from './course-3'
 
 const collections: CollectionSlug[] = [
   'categories',
   'media',
   'pages',
-  'posts',
+  'courses',
   'forms',
   'form-submissions',
   'search',
@@ -193,72 +193,72 @@ export const seed = async ({
     demoAuthorID = `"${demoAuthorID}"`
   }
 
-  payload.logger.info(`— Seeding posts...`)
+  payload.logger.info(`— Seeding courses...`)
 
-  // Do not create posts with `Promise.all` because we want the posts to be created in order
+  // Do not create courses with `Promise.all` because we want the courses to be created in order
   // This way we can sort them by `createdAt` or `publishedAt` and they will be in the expected order
-  const post1Doc = await payload.create({
-    collection: 'posts',
+  const course1Doc = await payload.create({
+    collection: 'courses',
     depth: 0,
     context: {
       disableRevalidate: true,
     },
     data: JSON.parse(
-      JSON.stringify({ ...post1, categories: [technologyCategory.id] })
+      JSON.stringify({ ...course1, categories: [technologyCategory.id] })
         .replace(/"\{\{IMAGE_1\}\}"/g, String(image1ID))
         .replace(/"\{\{IMAGE_2\}\}"/g, String(image2ID))
         .replace(/"\{\{AUTHOR\}\}"/g, String(demoAuthorID)),
     ),
   })
 
-  const post2Doc = await payload.create({
-    collection: 'posts',
+  const course2Doc = await payload.create({
+    collection: 'courses',
     depth: 0,
     context: {
       disableRevalidate: true,
     },
     data: JSON.parse(
-      JSON.stringify({ ...post2, categories: [newsCategory.id] })
+      JSON.stringify({ ...course2, categories: [newsCategory.id] })
         .replace(/"\{\{IMAGE_1\}\}"/g, String(image2ID))
         .replace(/"\{\{IMAGE_2\}\}"/g, String(image3ID))
         .replace(/"\{\{AUTHOR\}\}"/g, String(demoAuthorID)),
     ),
   })
 
-  const post3Doc = await payload.create({
-    collection: 'posts',
+  const course3Doc = await payload.create({
+    collection: 'courses',
     depth: 0,
     context: {
       disableRevalidate: true,
     },
     data: JSON.parse(
-      JSON.stringify({ ...post3, categories: [financeCategory.id] })
+      JSON.stringify({ ...course3, categories: [financeCategory.id] })
         .replace(/"\{\{IMAGE_1\}\}"/g, String(image3ID))
         .replace(/"\{\{IMAGE_2\}\}"/g, String(image1ID))
         .replace(/"\{\{AUTHOR\}\}"/g, String(demoAuthorID)),
     ),
   })
 
-  // update each post with related posts
+  // update each post with related courses
   await payload.update({
-    id: post1Doc.id,
-    collection: 'posts',
+    id: course1Doc.id,
+    collection: 'courses',
     data: {
-      relatedPosts: [post2Doc.id, post3Doc.id],
+      relatedCourses: [course2Doc.id, course3Doc.id],
     },
   })
   await payload.update({
-    id: post2Doc.id,
-    collection: 'posts',
+    id: course2Doc.id,
+    collection: 'courses',
     data: {
-      relatedPosts: [post1Doc.id, post3Doc.id],
+      relatedCourses: [course1Doc.id, course3Doc.id],
     },
   })
   await payload.update({
-    id: post3Doc.id,
-    collection: 'posts',
+    id: course3Doc.id,
+    collection: 'courses',
     data: {
-      relatedPosts: [post1Doc.id, post2Doc.id],
+      relatedCourses: [course1Doc.id, course2Doc.id],
     },
   })
 
@@ -310,8 +310,8 @@ export const seed = async ({
           {
             link: {
               type: 'custom',
-              label: 'Posts',
-              url: '/posts',
+              label: 'Courses',
+              url: '/courses',
             },
           },
           {

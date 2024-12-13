@@ -1,14 +1,14 @@
 import { formatDateTime } from 'src/utilities/formatDateTime'
 import React from 'react'
 
-import type { Post } from '@/payload-types'
+import type { Course } from '@/payload-types'
 
 import { Media } from '@/components/Media'
 
-export const PostHero: React.FC<{
-  post: Post
-}> = ({ post }) => {
-  const { categories, meta: { image: metaImage } = {}, populatedAuthors, publishedAt, title } = post
+export const CourseHero: React.FC<{
+  course: Course
+}> = ({ course }) => {
+  const { categories, meta: { image: metaImage } = {}, publishedAt, title } = course
 
   return (
     <div className="relative -mt-[10.4rem] flex items-end">
@@ -39,34 +39,6 @@ export const PostHero: React.FC<{
           </div>
 
           <div className="flex flex-col md:flex-row gap-4 md:gap-16">
-            <div className="flex flex-col gap-4">
-              {populatedAuthors && (
-                <div className="flex flex-col gap-1">
-                  <p className="text-sm">Author</p>
-                  {populatedAuthors.map((author, index) => {
-                    const { name } = author
-
-                    const isLast = index === populatedAuthors.length - 1
-                    const secondToLast = index === populatedAuthors.length - 2
-
-                    return (
-                      <React.Fragment key={index}>
-                        {name}
-                        {secondToLast && populatedAuthors.length > 2 && (
-                          <React.Fragment>, </React.Fragment>
-                        )}
-                        {secondToLast && populatedAuthors.length === 2 && (
-                          <React.Fragment> </React.Fragment>
-                        )}
-                        {!isLast && populatedAuthors.length > 1 && (
-                          <React.Fragment>and </React.Fragment>
-                        )}
-                      </React.Fragment>
-                    )
-                  })}
-                </div>
-              )}
-            </div>
             {publishedAt && (
               <div className="flex flex-col gap-1">
                 <p className="text-sm">Date Published</p>

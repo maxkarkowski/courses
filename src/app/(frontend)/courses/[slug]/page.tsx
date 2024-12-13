@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 
-import { RelatedPosts } from '@/blocks/RelatedPosts/Component'
 import { PayloadRedirects } from '@/components/PayloadRedirects'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
@@ -8,9 +7,7 @@ import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
 import RichText from '@/components/RichText'
 
-import type { Post } from '@/payload-types'
-
-import { PostHero } from '@/heros/PostHero'
+import { CourseHero } from '@/heros/CourseHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
@@ -41,7 +38,7 @@ type Args = {
   }>
 }
 
-export default async function Post({ params: paramsPromise }: Args) {
+export default async function Course({ params: paramsPromise }: Args) {
   const { slug = '' } = await paramsPromise
   const url = '/courses/' + slug
   const course = await queryCourseBySlug({ slug })
@@ -57,7 +54,7 @@ export default async function Post({ params: paramsPromise }: Args) {
 
       <LivePreviewListener />
 
-      <PostHero post={course} />
+      <CourseHero course={course} />
 
       <div className="flex flex-col items-center gap-4 pt-8">
         <div className="container">

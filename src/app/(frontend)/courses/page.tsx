@@ -32,7 +32,7 @@ export default async function Page() {
       <PageClient />
       <div className="container mb-16">
         <div className="prose dark:prose-invert max-w-none">
-          <h1>Posts</h1>
+          <h1>Courses</h1>
         </div>
       </div>
 
@@ -45,7 +45,7 @@ export default async function Page() {
         />
       </div>
 
-      <CollectionArchive posts={courses.docs} />
+      <CollectionArchive courses={courses.docs} />
 
       <div className="container">
         {courses.totalPages > 1 && courses.page && (

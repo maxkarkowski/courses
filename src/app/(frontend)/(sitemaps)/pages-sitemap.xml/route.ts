@@ -36,8 +36,9 @@ const getPagesSitemap = unstable_cache(
         loc: `${SITE_URL}/search`,
         lastmod: dateFallback,
       },
+
       {
-        loc: `${SITE_URL}/posts`,
+        loc: `${SITE_URL}/courses`,
         lastmod: dateFallback,
       },
     ]

@@ -19,9 +19,9 @@ const collectionLabels = {
     plural: 'Pages',
     singular: 'Page',
   },
-  posts: {
-    plural: 'Posts',
-    singular: 'Post',
+  courses: {
+    plural: 'Courses',
+    singular: 'Course',
   },
   projects: {
     plural: 'Projects',
@@ -54,7 +54,7 @@ export const AdminBar: React.FC<{
       <div className="container">
         <PayloadAdminBar
           {...adminBarProps}
-          className="py-2 text-white"
+          className="py-2 text-cyan-500"
           classNames={{
             controls: 'font-medium text-white',
             logo: 'text-white',

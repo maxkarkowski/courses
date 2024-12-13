@@ -19,7 +19,7 @@ export const revalidateCourse: CollectionAfterChangeHook<Course> = ({
       revalidateTag('courses-sitemap')
     }
 
-    // If the post was previously published, we need to revalidate the old path
+    // If the course was previously published, we need to revalidate the old path
     if (previousDoc._status === 'published' && doc._status !== 'published') {
       const oldPath = `/courses/${previousDoc.slug}`
 

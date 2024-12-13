@@ -10,4 +10,4 @@ services:
     environment:
       - POSTGRES_PASSWORD=root
       - POSTGRES_USER=playload
-      - POSTGRES_DB=courses
+      - POSTGRES_DB=mhs

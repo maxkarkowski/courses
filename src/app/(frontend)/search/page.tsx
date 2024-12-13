@@ -4,10 +4,9 @@ import { CollectionArchive } from '@/components/CollectionArchive'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'
-import { Post } from '@/payload-types'
 import { Search } from '@/search/Component'
 import PageClient from './page.client'
-import { CardPostData } from '@/components/Card'
+import { CardCourseData } from '@/components/Card'
 
 type Args = {
   searchParams: Promise<{
@@ -18,7 +17,7 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
   const { q: query } = await searchParamsPromise
   const payload = await getPayload({ config: configPromise })
 
-  const posts = await payload.find({
+  const courses = await payload.find({
     collection: 'search',
     depth: 1,
     limit: 12,
@@ -73,8 +72,8 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
         </div>
       </div>
 
-      {posts.totalDocs > 0 ? (
-        <CollectionArchive posts={posts.docs as CardPostData[]} />
+      {courses.totalDocs > 0 ? (
+        <CollectionArchive courses={courses.docs as CardCourseData[]} />
       ) : (
         <div className="container">No results found.</div>
       )}

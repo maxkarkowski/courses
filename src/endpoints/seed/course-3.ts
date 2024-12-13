@@ -1,6 +1,6 @@
-import type { Post } from '@/payload-types'
+import { Course } from '@/payload-types'
 
-export const post3: Partial<Post> = {
+export const course3: Partial<Course> = {
   slug: 'dollar-and-sense-the-financial-forecast',
   _status: 'published',
   // @ts-ignore
@@ -257,6 +257,6 @@ export const post3: Partial<Post> = {
     image: '{{IMAGE_1}}',
     title: 'Dollar and Sense: The Financial Forecast',
   },
-  relatedPosts: [], // this is populated by the seed script
+  relatedCourses: [], // this is populated by the seed script
   title: 'Dollar and Sense: The Financial Forecast',
 }
