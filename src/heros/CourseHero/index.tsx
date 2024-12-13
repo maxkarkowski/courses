@@ -8,10 +8,20 @@ import { Media } from '@/components/Media'
 export const CourseHero: React.FC<{
   course: Course
 }> = ({ course }) => {
-  const { categories, meta: { image: metaImage } = {}, publishedAt, title } = course
-
+  const { categories, image, meta: { image: metaImage } = {}, publishedAt, title } = course
   return (
     <div className="relative -mt-[10.4rem] flex items-end">
+      {image && typeof image !== 'string' && (
+        <>
+          <Media
+            fill
+            priority={false}
+            loading="lazy"
+            imgClassName="-z-10 object-cover"
+            resource={image}
+          />
+        </>
+      )}
       <div className="container z-10 relative lg:grid lg:grid-cols-[1fr_48rem_1fr] text-white pb-8">
         <div className="col-start-1 col-span-1 md:col-start-2 md:col-span-2">
           <div className="uppercase text-sm mb-6">

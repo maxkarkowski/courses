@@ -25,6 +25,7 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { slugField } from '@/fields/slug'
+import { FormBlock } from '@/blocks/Form/config'
 
 export const Courses: CollectionConfig<'courses'> = {
   slug: 'courses',
@@ -45,6 +46,7 @@ export const Courses: CollectionConfig<'courses'> = {
       image: true,
       description: true,
     },
+    form: true,
   },
   admin: {
     defaultColumns: ['title', 'slug', 'updatedAt'],
@@ -72,6 +74,14 @@ export const Courses: CollectionConfig<'courses'> = {
       name: 'title',
       type: 'text',
       required: true,
+    },
+    { name: 'image', type: 'upload', relationTo: 'media' },
+    {
+      name: 'form',
+      type: 'relationship',
+      relationTo: 'forms',
+      admin: { position: 'sidebar' },
+      defaultValue: '1',
     },
     {
       name: 'start',
@@ -151,6 +161,7 @@ export const Courses: CollectionConfig<'courses'> = {
               hasMany: true,
               relationTo: 'courses',
             },
+
             {
               name: 'categories',
               type: 'relationship',
