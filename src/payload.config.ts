@@ -18,6 +18,7 @@ import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 import { Courses } from './collections/Courses'
 import { Organizers } from './collections/Organizers'
+import { migrations } from './migrations'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -27,6 +28,7 @@ const database = process.env.VERCEL
       pool: {
         connectionString: process.env.DATABASE_URI || '',
       },
+      prodMigrations: migrations,
     })
   : postgresAdapter({
       pool: {
