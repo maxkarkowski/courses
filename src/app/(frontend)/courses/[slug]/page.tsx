@@ -43,7 +43,7 @@ export default async function Course({ params: paramsPromise }: Args) {
   const { slug = '' } = await paramsPromise
   const url = '/courses/' + slug
   const course = await queryCourseBySlug({ slug })
-
+  console.log('course', course.form)
   if (!course) return <PayloadRedirects url={url} />
 
   return (
@@ -60,7 +60,8 @@ export default async function Course({ params: paramsPromise }: Args) {
       <div className="flex flex-col items-center gap-6 pt-8">
         <div className="container">
           <RichText className="max-w-[48rem] mx-auto" data={course.content} enableGutter={false} />
-          {course.form && <FormBlock form={course?.form} />}
+          {/* @ts-ignore */}
+          {course.form && <FormBlock form={course.form} />}
         </div>
       </div>
     </article>
