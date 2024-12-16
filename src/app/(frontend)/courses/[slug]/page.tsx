@@ -43,7 +43,6 @@ export default async function Course({ params: paramsPromise }: Args) {
   const { slug = '' } = await paramsPromise
   const url = '/courses/' + slug
   const course = await queryCourseBySlug({ slug })
-  console.log('course', course.form)
   if (!course) return <PayloadRedirects url={url} />
 
   return (
