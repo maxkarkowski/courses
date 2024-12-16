@@ -98,9 +98,17 @@ export const Courses: CollectionConfig<'courses'> = {
       },
     },
     {
-      name: 'Organizer',
+      name: 'organizer',
       type: 'relationship',
       relationTo: 'organizers',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'category',
+      type: 'relationship',
+      relationTo: 'categories',
       admin: {
         position: 'sidebar',
       },

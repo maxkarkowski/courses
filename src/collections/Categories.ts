@@ -20,5 +20,6 @@ export const Categories: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    { name: 'relatedCourses', type: 'join', collection: 'courses', on: 'category' },
   ],
 }

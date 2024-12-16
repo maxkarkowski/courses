@@ -25,7 +25,14 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    categories: {
+      relatedCourses: 'courses';
+    };
+    organizers: {
+      relatedCourses: 'courses';
+    };
+  };
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -359,6 +366,10 @@ export interface ArchiveBlock {
 export interface Category {
   id: number;
   title: string;
+  relatedCourses?: {
+    docs?: (number | Course)[] | null;
+    hasNextPage?: boolean | null;
+  } | null;
   parent?: (number | null) | Category;
   breadcrumbs?:
     | {
@@ -381,7 +392,8 @@ export interface Course {
   image?: (number | null) | Media;
   form?: (number | null) | Form;
   start: string;
-  Organizer?: (number | null) | Organizer;
+  organizer?: (number | null) | Organizer;
+  category?: (number | null) | Category;
   end?: string | null;
   content: {
     root: {
@@ -584,6 +596,10 @@ export interface Organizer {
   id: number;
   title: string;
   mail: string;
+  relatedCourses?: {
+    docs?: (number | Course)[] | null;
+    hasNextPage?: boolean | null;
+  } | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1007,6 +1023,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface CategoriesSelect<T extends boolean = true> {
   title?: T;
+  relatedCourses?: T;
   parent?: T;
   breadcrumbs?:
     | T
@@ -1044,7 +1061,8 @@ export interface CoursesSelect<T extends boolean = true> {
   image?: T;
   form?: T;
   start?: T;
-  Organizer?: T;
+  organizer?: T;
+  category?: T;
   end?: T;
   content?: T;
   relatedCourses?: T;
@@ -1070,6 +1088,7 @@ export interface CoursesSelect<T extends boolean = true> {
 export interface OrganizersSelect<T extends boolean = true> {
   title?: T;
   mail?: T;
+  relatedCourses?: T;
   updatedAt?: T;
   createdAt?: T;
 }

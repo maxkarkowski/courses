@@ -22,6 +22,18 @@ import { Organizers } from './collections/Organizers'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const database = process.env.VERCEL
+  ? vercelPostgresAdapter({
+      pool: {
+        connectionString: process.env.DATABASE_URI || '',
+      },
+    })
+  : postgresAdapter({
+      pool: {
+        connectionString: process.env.DATABASE_URI || '',
+      },
+    })
+
 export default buildConfig({
   admin: {
     components: {
@@ -66,11 +78,12 @@ export default buildConfig({
   //     connectionString: process.env.DATABASE_URI || '',
   //   },
   // }),
-  db: vercelPostgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URI,
-    },
-  }),
+  db: database,
+  // db: vercelPostgresAdapter({
+  //   pool: {
+  //     connectionString: process.env.DATABASE_URI,
+  //   },
+  // }),
   collections: [Pages, Media, Categories, Users, Courses, Organizers],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],

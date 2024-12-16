@@ -25,5 +25,6 @@ export const Organizers: CollectionConfig = {
       type: 'email',
       required: true,
     },
+    { name: 'relatedCourses', type: 'join', collection: 'courses', on: 'organizer' },
   ],
 }
