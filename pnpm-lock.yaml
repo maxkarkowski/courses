@@ -114,6 +114,9 @@ importers:
       '@eslint/eslintrc':
         specifier: ^3.2.0
         version: 3.2.0
+      '@payloadcms/translations':
+        specifier: ^3.7.0
+        version: 3.7.0
       '@tailwindcss/typography':
         specifier: ^0.5.13
         version: 0.5.15(tailwindcss@3.4.16)
@@ -1388,6 +1391,9 @@ packages:
 
   '@payloadcms/translations@3.6.0':
     resolution: {integrity: sha512-ISc6T78ukDwUPEg+RqdnB+iU84yVeix4G/nb8flvtYWAw1Ay9DEExOvT3SbV8g60hibHbximdIpLpuux8K9vUw==}
+
+  '@payloadcms/translations@3.7.0':
+    resolution: {integrity: sha512-YN+fJoQPPGIXR/fh5wW9TnS4K7EI66tPOFr00KEWhjrRKfFPA71FBrGRRAMW8Oi5SoFu0tcX/ObUCAkN7NytXg==}
 
   '@payloadcms/ui@3.6.0':
     resolution: {integrity: sha512-t8Ebc76eaC0O28hoPuv1OTofuikTMQci0HJLiw7PmvBxqLgfTiSjpFte81jMRvyaMo07ej9rg+83l1SDDF0m9g==}
@@ -6532,6 +6538,10 @@ snapshots:
       - typescript
 
   '@payloadcms/translations@3.6.0':
+    dependencies:
+      date-fns: 4.1.0
+
+  '@payloadcms/translations@3.7.0':
     dependencies:
       date-fns: 4.1.0
 

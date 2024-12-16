@@ -5,6 +5,16 @@ import { authenticated } from '../access/authenticated'
 
 export const Organizers: CollectionConfig = {
   slug: 'organizers',
+  labels: {
+    singular: {
+      en: 'Organizer',
+      de: 'Organisator',
+    },
+    plural: {
+      en: 'Organizers',
+      de: 'Organisatoren',
+    },
+  },
   access: {
     create: authenticated,
     delete: authenticated,

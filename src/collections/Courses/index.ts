@@ -25,10 +25,19 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { slugField } from '@/fields/slug'
-import { FormBlock } from '@/blocks/Form/config'
 
 export const Courses: CollectionConfig<'courses'> = {
   slug: 'courses',
+  labels: {
+    singular: {
+      en: 'Course',
+      de: 'Seminar',
+    },
+    plural: {
+      en: 'Courses',
+      de: 'Seminare',
+    },
+  },
   access: {
     create: authenticated,
     delete: authenticated,

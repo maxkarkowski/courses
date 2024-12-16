@@ -1,7 +1,8 @@
 // storage-adapter-import-placeholder
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
-
+import { en } from '@payloadcms/translations/languages/en'
+import { de } from '@payloadcms/translations/languages/de'
 import sharp from 'sharp' // sharp-import
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -35,6 +36,7 @@ const database = process.env.VERCEL
     })
 
 export default buildConfig({
+  i18n: { supportedLanguages: { de, en } },
   admin: {
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
