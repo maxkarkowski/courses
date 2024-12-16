@@ -56,7 +56,7 @@ export default async function Course({ params: paramsPromise }: Args) {
 
       <CourseHero course={course} />
 
-      <div className="flex flex-col items-center gap-4 pt-8">
+      <div className="flex flex-col items-center gap-6 pt-8">
         <div className="container">
           <RichText className="max-w-[48rem] mx-auto" data={course.content} enableGutter={false} />
         </div>
