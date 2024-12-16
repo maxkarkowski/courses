@@ -28,7 +28,6 @@ const database = process.env.VERCEL
       pool: {
         connectionString: process.env.DATABASE_URI || '',
       },
-      prodMigrations: migrations,
     })
   : postgresAdapter({
       pool: {
