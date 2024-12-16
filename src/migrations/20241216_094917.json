@@ -1,5 +1,5 @@
 {
-  "id": "5f61da1f-9c29-47ba-a407-5d1437ebaaf6",
+  "id": "fe6efda1-f514-43ca-8377-495f92d9d2b1",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -3869,6 +3869,12 @@
           "primaryKey": false,
           "notNull": false
         },
+        "category_id": {
+          "name": "category_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
         "end": {
           "name": "end",
           "type": "timestamp(3) with time zone",
@@ -3977,6 +3983,21 @@
           "columns": [
             {
               "expression": "organizer_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "courses_category_idx": {
+          "name": "courses_category_idx",
+          "columns": [
+            {
+              "expression": "category_id",
               "isExpression": false,
               "asc": true,
               "nulls": "last"
@@ -4096,6 +4117,19 @@
           "tableTo": "organizers",
           "columnsFrom": [
             "organizer_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "courses_category_id_categories_id_fk": {
+          "name": "courses_category_id_categories_id_fk",
+          "tableFrom": "courses",
+          "tableTo": "categories",
+          "columnsFrom": [
+            "category_id"
           ],
           "columnsTo": [
             "id"
@@ -4334,6 +4368,12 @@
           "primaryKey": false,
           "notNull": false
         },
+        "version_category_id": {
+          "name": "version_category_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
         "version_end": {
           "name": "version_end",
           "type": "timestamp(3) with time zone",
@@ -4481,6 +4521,21 @@
           "columns": [
             {
               "expression": "version_organizer_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_courses_v_version_version_category_idx": {
+          "name": "_courses_v_version_version_category_idx",
+          "columns": [
+            {
+              "expression": "version_category_id",
               "isExpression": false,
               "asc": true,
               "nulls": "last"
@@ -4673,6 +4728,19 @@
           "tableTo": "organizers",
           "columnsFrom": [
             "version_organizer_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "_courses_v_version_category_id_categories_id_fk": {
+          "name": "_courses_v_version_category_id_categories_id_fk",
+          "tableFrom": "_courses_v",
+          "tableTo": "categories",
+          "columnsFrom": [
+            "version_category_id"
           ],
           "columnsTo": [
             "id"

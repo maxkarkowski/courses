@@ -364,6 +364,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"form_id" integer,
   	"start" timestamp(3) with time zone,
   	"organizer_id" integer,
+  	"category_id" integer,
   	"end" timestamp(3) with time zone,
   	"content" jsonb,
   	"meta_title" varchar,
@@ -394,6 +395,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"version_form_id" integer,
   	"version_start" timestamp(3) with time zone,
   	"version_organizer_id" integer,
+  	"version_category_id" integer,
   	"version_end" timestamp(3) with time zone,
   	"version_content" jsonb,
   	"version_meta_title" varchar,
@@ -962,6 +964,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "courses" ADD CONSTRAINT "courses_category_id_categories_id_fk" FOREIGN KEY ("category_id") REFERENCES "public"."categories"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "courses" ADD CONSTRAINT "courses_meta_image_id_media_id_fk" FOREIGN KEY ("meta_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -1005,6 +1013,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    ALTER TABLE "_courses_v" ADD CONSTRAINT "_courses_v_version_organizer_id_organizers_id_fk" FOREIGN KEY ("version_organizer_id") REFERENCES "public"."organizers"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_courses_v" ADD CONSTRAINT "_courses_v_version_category_id_categories_id_fk" FOREIGN KEY ("version_category_id") REFERENCES "public"."categories"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -1364,6 +1378,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "courses_image_idx" ON "courses" USING btree ("image_id");
   CREATE INDEX IF NOT EXISTS "courses_form_idx" ON "courses" USING btree ("form_id");
   CREATE INDEX IF NOT EXISTS "courses_organizer_idx" ON "courses" USING btree ("organizer_id");
+  CREATE INDEX IF NOT EXISTS "courses_category_idx" ON "courses" USING btree ("category_id");
   CREATE INDEX IF NOT EXISTS "courses_meta_meta_image_idx" ON "courses" USING btree ("meta_image_id");
   CREATE INDEX IF NOT EXISTS "courses_slug_idx" ON "courses" USING btree ("slug");
   CREATE INDEX IF NOT EXISTS "courses_updated_at_idx" ON "courses" USING btree ("updated_at");
@@ -1378,6 +1393,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_courses_v_version_version_image_idx" ON "_courses_v" USING btree ("version_image_id");
   CREATE INDEX IF NOT EXISTS "_courses_v_version_version_form_idx" ON "_courses_v" USING btree ("version_form_id");
   CREATE INDEX IF NOT EXISTS "_courses_v_version_version_organizer_idx" ON "_courses_v" USING btree ("version_organizer_id");
+  CREATE INDEX IF NOT EXISTS "_courses_v_version_version_category_idx" ON "_courses_v" USING btree ("version_category_id");
   CREATE INDEX IF NOT EXISTS "_courses_v_version_meta_version_meta_image_idx" ON "_courses_v" USING btree ("version_meta_image_id");
   CREATE INDEX IF NOT EXISTS "_courses_v_version_version_slug_idx" ON "_courses_v" USING btree ("version_slug");
   CREATE INDEX IF NOT EXISTS "_courses_v_version_version_updated_at_idx" ON "_courses_v" USING btree ("version_updated_at");
