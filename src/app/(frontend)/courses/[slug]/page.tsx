@@ -11,6 +11,7 @@ import { CourseHero } from '@/heros/CourseHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { FormBlock } from '@/blocks/Form/Component'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -59,6 +60,7 @@ export default async function Course({ params: paramsPromise }: Args) {
       <div className="flex flex-col items-center gap-6 pt-8">
         <div className="container">
           <RichText className="max-w-[48rem] mx-auto" data={course.content} enableGutter={false} />
+          {course.form && <FormBlock form={course?.form} />}
         </div>
       </div>
     </article>

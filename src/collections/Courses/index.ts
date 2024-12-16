@@ -25,6 +25,7 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { slugField } from '@/fields/slug'
+import { FormBlock } from '@/blocks/Form/config'
 
 export const Courses: CollectionConfig<'courses'> = {
   slug: 'courses',
@@ -219,6 +220,17 @@ export const Courses: CollectionConfig<'courses'> = {
             }),
           ],
         },
+        // {
+        //   fields: [
+        //     {
+        //       name: 'layout',
+        //       type: 'blocks',
+        //       blocks: [FormBlock],
+        //       required: true,
+        //     },
+        //   ],
+        //   label: 'form',
+        // },
       ],
     },
     {
