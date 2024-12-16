@@ -84,7 +84,7 @@ export default buildConfig({
   //     connectionString: process.env.DATABASE_URI,
   //   },
   // }),
-  collections: [Pages, Media, Categories, Users, Courses, Organizers],
+  collections: [Pages, Categories, Courses, Organizers, Media, Users],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [

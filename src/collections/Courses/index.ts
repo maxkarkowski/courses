@@ -98,6 +98,18 @@ export const Courses: CollectionConfig<'courses'> = {
       },
     },
     {
+      name: 'end',
+      type: 'date',
+      admin: {
+        position: 'sidebar',
+        date: {
+          pickerAppearance: 'dayAndTime',
+          displayFormat: 'd.MMMM.yyyy HH:mm',
+          timeFormat: 'HH:mm',
+        },
+      },
+    },
+    {
       name: 'organizer',
       type: 'relationship',
       relationTo: 'organizers',
@@ -113,18 +125,7 @@ export const Courses: CollectionConfig<'courses'> = {
         position: 'sidebar',
       },
     },
-    {
-      name: 'end',
-      type: 'date',
-      admin: {
-        position: 'sidebar',
-        date: {
-          pickerAppearance: 'dayAndTime',
-          displayFormat: 'd.MMMM.yyyy HH:mm',
-          timeFormat: 'HH:mm',
-        },
-      },
-    },
+
     {
       type: 'tabs',
       tabs: [
