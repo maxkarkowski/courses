@@ -7,14 +7,14 @@ export const formatSlug = (val: string): string =>
     .toLowerCase()
 
 export const formatSlugHook =
-  (fallback: string): FieldHook =>
+  (fallback: string[]): FieldHook =>
   ({ data, operation, originalDoc, value }) => {
     if (typeof value === 'string') {
       return formatSlug(value)
     }
 
     if (operation === 'create' || !data?.slug) {
-      const fallbackData = data?.[fallback] || data?.[fallback]
+      const fallbackData = fallback.map((key) => data?.[key]).find((val) => typeof val === 'string')
 
       if (fallbackData && typeof fallbackData === 'string') {
         return formatSlug(fallbackData)

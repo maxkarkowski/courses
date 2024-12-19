@@ -7,6 +7,7 @@ import sharp from 'sharp' // sharp-import
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
+import { resendAdapter } from '@payloadcms/email-resend'
 
 import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
@@ -75,17 +76,13 @@ export default buildConfig({
   },
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
-  // db: postgresAdapter({
-  //   pool: {
-  //     connectionString: process.env.DATABASE_URI || '',
-  //   },
-  // }),
+
   db: database,
-  // db: vercelPostgresAdapter({
-  //   pool: {
-  //     connectionString: process.env.DATABASE_URI,
-  //   },
-  // }),
+  email: resendAdapter({
+    defaultFromAddress: 'dev@payloadcms.com',
+    defaultFromName: 'Payload CMS',
+    apiKey: process.env.RESEND_API_KEY || '',
+  }),
   collections: [Pages, Categories, Courses, Organizers, Media, Users],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],

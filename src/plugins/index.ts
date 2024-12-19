@@ -54,9 +54,19 @@ export const plugins: Plugin[] = [
     generateTitle,
     generateURL,
   }),
+
   formBuilderPlugin({
     fields: {
       payment: false,
+    },
+    beforeEmail: (emailsToSend, beforeChangeParams) => {
+      const { data } = beforeChangeParams
+      console.log('dta', data.courses)
+      emailsToSend.forEach((email) => {
+        email.cc = 'jan@example.com'
+      })
+
+      return emailsToSend
     },
     formOverrides: {
       fields: ({ defaultFields }) => {

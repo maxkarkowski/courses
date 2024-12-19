@@ -8,7 +8,7 @@ import { formatSlug } from './formatSlug'
 import './index.scss'
 
 type SlugComponentProps = {
-  fieldToUse: string
+  fieldToUse: string[]
   checkboxFieldPath: string
 } & TextFieldClientProps
 
@@ -37,7 +37,7 @@ export const SlugComponent: React.FC<SlugComponentProps> = ({
 
   // The value of the field we're listening to for the slug
   const targetFieldValue = useFormFields(([fields]) => {
-    return fields[fieldToUse]?.value as string
+    return fieldToUse.map((field) => fields[field]?.value).join('-') as string
   })
 
   useEffect(() => {

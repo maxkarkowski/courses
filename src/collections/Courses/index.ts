@@ -25,7 +25,6 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { slugField } from '@/fields/slug'
-import { FormBlock } from '@/blocks/Form/config'
 
 export const Courses: CollectionConfig<'courses'> = {
   slug: 'courses',
@@ -60,6 +59,7 @@ export const Courses: CollectionConfig<'courses'> = {
   },
   admin: {
     defaultColumns: ['title', 'slug', 'updatedAt'],
+    listSearchableFields: ['title'],
     livePreview: {
       url: ({ data, req }) => {
         const path = generatePreviewPath({
@@ -89,7 +89,9 @@ export const Courses: CollectionConfig<'courses'> = {
     {
       name: 'form',
       type: 'relationship',
+      hasMany: false,
       relationTo: 'forms',
+
       admin: { position: 'sidebar' },
       defaultValue: '1',
     },
@@ -98,11 +100,12 @@ export const Courses: CollectionConfig<'courses'> = {
       type: 'date',
       required: true,
       defaultValue: () => new Date(),
+
       admin: {
         position: 'sidebar',
         date: {
           pickerAppearance: 'dayAndTime',
-          displayFormat: 'd.MMMM.yyyy HH:mm',
+          displayFormat: 'd.MMMM.yyyy',
           timeFormat: 'HH:mm',
         },
       },
@@ -121,6 +124,7 @@ export const Courses: CollectionConfig<'courses'> = {
     },
     {
       name: 'organizer',
+      hasMany: false,
       type: 'relationship',
       relationTo: 'organizers',
       admin: {
@@ -220,17 +224,6 @@ export const Courses: CollectionConfig<'courses'> = {
             }),
           ],
         },
-        // {
-        //   fields: [
-        //     {
-        //       name: 'layout',
-        //       type: 'blocks',
-        //       blocks: [FormBlock],
-        //       required: true,
-        //     },
-        //   ],
-        //   label: 'form',
-        // },
       ],
     },
     {
@@ -254,12 +247,9 @@ export const Courses: CollectionConfig<'courses'> = {
       },
     },
 
-    // This field is only used to populate the user data via the `populateAuthors` hook
-    // This is because the `user` collection has access control locked to protect user privacy
-    // GraphQL will also not return mutated user data that differs from the underlying schema
-
-    ...slugField(),
+    ...slugField(['title', 'start']),
   ],
+
   hooks: {
     afterChange: [revalidateCourse],
     afterDelete: [revalidateDelete],
