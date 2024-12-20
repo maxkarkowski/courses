@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import React from 'react'
 import './index.scss'
 
@@ -13,7 +12,6 @@ const BeforeLogin: React.FC = () => {
         loading="lazy"
         fetchPriority="low"
         decoding="async"
-        className={clsx('max-w-[9.375rem] w-full h-[80px]')}
         src="/logo.png"
       />
     </div>
