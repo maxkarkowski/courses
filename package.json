@@ -21,7 +21,7 @@
     "ci": "payload migrate && pnpm build"
   },
   "dependencies": {
-    "@payloadcms/db-mongodb": "3.8.0",
+    "@payloadcms/db-mongodb": "latest",
     "@payloadcms/db-postgres": "latest",
     "@payloadcms/db-vercel-postgres": "latest",
     "@payloadcms/email-resend": "latest",

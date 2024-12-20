@@ -8,6 +8,7 @@ import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import { resendAdapter } from '@payloadcms/email-resend'
+import { mongooseAdapter } from '@payloadcms/db-mongodb'
 
 import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
@@ -74,7 +75,10 @@ export default buildConfig({
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
 
-  db: database,
+  // db: database,
+  db: mongooseAdapter({
+    url: process.env.MONGODB_URI || '',
+  }),
   email: resendAdapter({
     defaultFromAddress: 'dev@payloadcms.com',
     defaultFromName: 'Payload CMS',
