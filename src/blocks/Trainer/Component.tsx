@@ -19,16 +19,12 @@ export const TrainerBlock: React.FC<Props> = (props) => {
 
   return (
     <div className="container">
-      <div className="bg-card rounded border-border border p-4 flex flex-col gap-8 md:flex-row md:justify-between md:items-start">
-        <div className="max-w-[48rem] flex items-center">
+      <div className="bg-card rounded border-border border  flex flex-col lg:flex-row justify-between">
+        <div className="flex flex-row items-start p-4 justify-start self-start">
           {richText && <RichText className="mb-0" data={richText} enableGutter={false} />}
         </div>
-        <div className="flex flex-col gap-2">
-          <Media
-            imgClassName={cn('border border-border rounded-[0.8rem]', imgClassName)}
-            resource={media}
-            src={staticImage}
-          />
+        <div className="flex flex-col gap-2 max-w-[30rem] self-center">
+          <Media imgClassName={cn('', imgClassName)} resource={media} src={staticImage} />
           {caption && (
             <div
               className={cn(

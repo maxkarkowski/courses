@@ -22,8 +22,10 @@ export default async function Page() {
     select: {
       title: true,
       slug: true,
-
+      start: true,
+      end: true,
       meta: true,
+      categories: true,
     },
   })
 
@@ -32,7 +34,7 @@ export default async function Page() {
       <PageClient />
       <div className="container mb-16">
         <div className="prose dark:prose-invert max-w-none">
-          <h1>Courses</h1>
+          <h1>Seminare</h1>
         </div>
       </div>
 

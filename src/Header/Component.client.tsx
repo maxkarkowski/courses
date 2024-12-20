@@ -23,15 +23,14 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
     setHeaderTheme(null)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])
-
   useEffect(() => {
     if (headerTheme && headerTheme !== theme) setTheme(headerTheme)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [headerTheme])
 
   return (
-    <header className="container relative z-20   " {...(theme ? { 'data-theme': theme } : {})}>
-      <div className="py-8 flex justify-between">
+    <header className=" relative z-20  bg-slate-600 " {...(theme ? { 'data-theme': 'dark' } : {})}>
+      <div className="container py-8 flex justify-between">
         <Link href="/">
           <Logo loading="eager" priority="high" className="invert-0 dark:invert-0" />
         </Link>

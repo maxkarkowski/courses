@@ -7,8 +7,8 @@ const defaultLabels = {
 
 const defaultCollectionLabels = {
   courses: {
-    plural: 'Courses',
-    singular: 'Course',
+    plural: 'Seminare',
+    singular: 'Seminar',
   },
 }
 
@@ -46,7 +46,7 @@ export const PageRange: React.FC<{
       {(typeof totalDocs === 'undefined' || totalDocs === 0) && 'Search produced no results.'}
       {typeof totalDocs !== 'undefined' &&
         totalDocs > 0 &&
-        `Showing ${indexStart}${indexStart > 0 ? ` - ${indexEnd}` : ''} of ${totalDocs} ${
+        `Zeige ${indexStart}${indexStart > 0 ? ` - ${indexEnd}` : ''} von ${totalDocs} ${
           totalDocs > 1 ? plural : singular
         }`}
     </div>

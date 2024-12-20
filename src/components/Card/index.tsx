@@ -4,11 +4,13 @@ import useClickableCard from '@/utilities/useClickableCard'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
 
-import { Media } from '@/components/Media'
 import { Course } from '@/payload-types'
+import { formatDateTime } from '@/utilities/formatDateTime'
 
-export type CardCourseData = Pick<Course, 'slug' | 'categories' | 'meta' | 'title'>
-
+export type CardCourseData = Pick<
+  Course,
+  'slug' | 'categories' | 'meta' | 'title' | 'start' | 'end'
+>
 export const Card: React.FC<{
   alignItems?: 'center'
   className?: string
@@ -19,8 +21,7 @@ export const Card: React.FC<{
 }> = (props) => {
   const { card, link } = useClickableCard({})
   const { className, doc, relationTo, showCategories, title: titleFromProps } = props
-
-  const { slug, categories, meta, title } = doc || {}
+  const { slug, categories, meta, title, start, end } = doc || {}
   const { description, image: metaImage } = meta || {}
   const hasCategories = categories && Array.isArray(categories) && categories.length > 0
   const titleToUse = titleFromProps || title
@@ -65,6 +66,13 @@ export const Card: React.FC<{
               </div>
             )}
           </div>
+        )}
+        {start && <time dateTime={start}>{formatDateTime(start)}</time>}
+        {end && (
+          <>
+            {' - '}
+            <time dateTime={end}>{formatDateTime(end)}</time>
+          </>
         )}
         {titleToUse && (
           <div className="prose">
