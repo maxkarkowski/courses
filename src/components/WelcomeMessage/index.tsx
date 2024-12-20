@@ -1,10 +1,8 @@
 import clsx from 'clsx'
 import React from 'react'
-import './index.scss'
-
-const BeforeLogin: React.FC = () => {
+const WelcomeMessage: React.FC = () => {
   return (
-    <div className="beforeLogin">
+    <div>
       {/* eslint-disable @next/next/no-img-element */}
       <img
         alt="Mensch Hund Systeme"
@@ -20,4 +18,4 @@ const BeforeLogin: React.FC = () => {
   )
 }
 
-export default BeforeLogin
+export default WelcomeMessage

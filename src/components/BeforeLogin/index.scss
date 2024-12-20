@@ -1,0 +1,11 @@
+@import '~@payloadcms/ui/scss';
+.login__brand {
+  display: none;
+}
+.beforeLogin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+}
