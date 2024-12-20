@@ -61,9 +61,13 @@ export const plugins: Plugin[] = [
     },
     beforeEmail: (emailsToSend, beforeChangeParams) => {
       const { data } = beforeChangeParams
-      console.log('dta', data.courses)
+
+      const subjectField = data.submissionData.find((field) => field.field === 'subject')
+      const ccField = data.submissionData.find((field) => field.field === 'cc')
+
       emailsToSend.forEach((email) => {
-        email.cc = 'jan@example.com'
+        email.cc = ccField ? ccField.value : ''
+        email.subject = subjectField ? subjectField.value : 'Kontakt'
       })
 
       return emailsToSend

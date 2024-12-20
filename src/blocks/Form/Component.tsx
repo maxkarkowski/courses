@@ -33,6 +33,8 @@ export type FormBlockType = {
 export const FormBlock: React.FC<
   {
     id?: string
+    subject?: Value
+    cc?: Value
   } & FormBlockType
 > = (props) => {
   const {
@@ -40,6 +42,8 @@ export const FormBlock: React.FC<
     form: formFromProps,
     form: { id: formID, confirmationMessage, confirmationType, redirect, submitButtonLabel } = {},
     introContent,
+    subject,
+    cc,
   } = props
 
   const formMethods = useForm({
@@ -62,12 +66,18 @@ export const FormBlock: React.FC<
       let loadingTimerID: ReturnType<typeof setTimeout>
       const submitForm = async () => {
         setError(undefined)
-
         const dataToSend = Object.entries(data).map(([name, value]) => ({
           field: name,
           value,
         }))
 
+        // Add subject and cc if available
+        if (subject) {
+          dataToSend.push({ field: 'subject', value: subject as Property })
+        }
+        if (cc) {
+          dataToSend.push({ field: 'cc', value: cc as Property })
+        }
         // delay loading indicator by 1s
         loadingTimerID = setTimeout(() => {
           setIsLoading(true)
