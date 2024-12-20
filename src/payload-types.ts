@@ -137,6 +137,15 @@ export interface Page {
   publishedAt?: string | null;
   slug?: string | null;
   slugLock?: boolean | null;
+  parent?: (number | null) | Page;
+  breadcrumbs?:
+    | {
+        doc?: (number | null) | Page;
+        url?: string | null;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -394,7 +403,7 @@ export interface Course {
   start: string;
   end?: string | null;
   organizer?: (number | null) | Organizer;
-  category?: (number | null) | Category;
+  categories?: (number | Category)[] | null;
   content: {
     root: {
       type: string;
@@ -411,7 +420,6 @@ export interface Course {
     [k: string]: unknown;
   };
   relatedCourses?: (number | Course)[] | null;
-  categories?: (number | Category)[] | null;
   meta?: {
     title?: string | null;
     image?: (number | null) | Media;
@@ -851,6 +859,15 @@ export interface PagesSelect<T extends boolean = true> {
   publishedAt?: T;
   slug?: T;
   slugLock?: T;
+  parent?: T;
+  breadcrumbs?:
+    | T
+    | {
+        doc?: T;
+        url?: T;
+        label?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -969,10 +986,9 @@ export interface CoursesSelect<T extends boolean = true> {
   start?: T;
   end?: T;
   organizer?: T;
-  category?: T;
+  categories?: T;
   content?: T;
   relatedCourses?: T;
-  categories?: T;
   meta?:
     | T
     | {

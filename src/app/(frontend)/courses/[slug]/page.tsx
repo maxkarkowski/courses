@@ -45,7 +45,7 @@ export default async function Course({ params: paramsPromise }: Args) {
   const course = await queryCourseBySlug({ slug })
   if (!course) return <PayloadRedirects url={url} />
   /* @ts-ignore */
-  const cc = course.organizer.mail
+  const cc = course.organizer?.mail
 
   return (
     <article className="pt-16 pb-16">

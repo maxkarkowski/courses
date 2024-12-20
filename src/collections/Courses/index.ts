@@ -132,9 +132,10 @@ export const Courses: CollectionConfig<'courses'> = {
       },
     },
     {
-      name: 'category',
+      name: 'categories',
       type: 'relationship',
       relationTo: 'categories',
+      hasMany: true,
       admin: {
         position: 'sidebar',
       },
@@ -185,15 +186,15 @@ export const Courses: CollectionConfig<'courses'> = {
               relationTo: 'courses',
             },
 
-            {
-              name: 'categories',
-              type: 'relationship',
-              admin: {
-                position: 'sidebar',
-              },
-              hasMany: true,
-              relationTo: 'categories',
-            },
+            // {
+            //   name: 'categories',
+            //   type: 'relationship',
+            //   admin: {
+            //     position: 'sidebar',
+            //   },
+            //   hasMany: true,
+            //   relationTo: 'categories',
+            // },
           ],
           label: 'Meta',
         },
