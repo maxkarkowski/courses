@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 
-import type { Header as HeaderType } from '@/payload-types'
+import type { Header as HeaderType, Page } from '@/payload-types'
 import * as SelectPrimitive from '@radix-ui/react-select'
 
 import { CMSLink } from '@/components/Link'
@@ -35,14 +35,6 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   }
   return (
     <>
-      <div>
-        <Button onClick={toggleMenu} variant="outline" className="flex gap-3 text-white">
-          Menu n1
-          <SelectPrimitive.Icon asChild>
-            <Menu className="h-6 w-6 " />
-          </SelectPrimitive.Icon>
-        </Button>
-      </div>
       <div className="flex gap-3 items-center hidden">
         <Drawer>
           <DrawerTrigger asChild>
@@ -104,7 +96,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
         </Drawer>
       </div>
 
-      <NavigationMenu className="hidden">
+      <NavigationMenu className="">
         <div className="flex gap-3 items-center" key="nav">
           <NavigationMenuList>
             {navItems.map(({ link, subNavItems }, i) => {
@@ -128,19 +120,9 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                     />
                   )}
                   {subNavItems && (
-                    <NavigationMenuContent>
-                      {subNavItems.map((subNavItem, a) => (
-                        <Link
-                          /* @ts-ignore */
-                          href={subNavItem.link.reference?.value.slug}
-                          legacyBehavior
-                          passHref
-                          key={a}
-                        >
-                          <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            {subNavItem.link.label}
-                          </NavigationMenuLink>
-                        </Link>
+                    <NavigationMenuContent className="p-4 flex flex-col">
+                      {subNavItems.map(({ link }, a) => (
+                        <CMSLink {...link} key={a} className="flex" />
                       ))}
                     </NavigationMenuContent>
                   )}
