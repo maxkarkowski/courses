@@ -10,7 +10,7 @@ export const CourseHero: React.FC<{
 }> = ({ course }) => {
   const { categories, image, start, end, meta: { image: metaImage } = {}, title } = course
   return (
-    <div className="relative -mt-[10.4rem] flex items-end">
+    <div className="relative flex items-start">
       {image && typeof image !== 'string' && (
         <>
           <Media
@@ -22,8 +22,8 @@ export const CourseHero: React.FC<{
           />
         </>
       )}
-      <div className="container z-10 relative lg:grid lg:grid-cols-[1fr_48rem_1fr] text-white pb-8">
-        <div className="col-start-1 col-span-1 md:col-start-2 md:col-span-2">
+      <div className="container ">
+        <div className="">
           <div className="uppercase text-sm mb-6">
             {start && <time dateTime={start}>{formatDateTime(start)}</time>}
             {end && (
@@ -58,8 +58,8 @@ export const CourseHero: React.FC<{
           </div>
         </div>
       </div>
-      <div className="min-h-[80vh] select-none">
-        {metaImage && typeof metaImage !== 'string' && (
+      {metaImage && typeof metaImage !== 'string' && (
+        <div className="min-h-[80vh] select-none">
           <Media
             fill
             priority={false}
@@ -67,9 +67,8 @@ export const CourseHero: React.FC<{
             imgClassName="-z-10 object-cover"
             resource={metaImage}
           />
-        )}
-        <div className="absolute pointer-events-none left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-black to-transparent" />
-      </div>
+        </div>
+      )}
     </div>
   )
 }
