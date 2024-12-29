@@ -131,6 +131,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                     <NavigationMenuContent>
                       {subNavItems.map((subNavItem, a) => (
                         <Link
+                          /* @ts-ignore */
                           href={subNavItem.link.reference?.value.slug}
                           legacyBehavior
                           passHref

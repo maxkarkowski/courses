@@ -57,7 +57,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
         </Button>
       </div>
       <div
-        className={`bg-accent-foreground w-full transition-all overflow-hidden flex ${isOpen ? 'h-auto' : 'h-0'}`}
+        className={`bg-accent-foreground dark:bg-accent w-full transition-all overflow-hidden flex ${isOpen ? 'h-auto' : 'h-0'}`}
       >
         <div className="container text-white">
           <Nav data={data} />
