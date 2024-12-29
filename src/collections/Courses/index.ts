@@ -38,7 +38,6 @@ export const Courses: CollectionConfig<'courses'> = {
       de: 'Seminare',
     },
   },
-  unique: ['slug'],
 
   access: {
     create: authenticated,
