@@ -78,6 +78,7 @@ export default buildConfig({
   // db: database,
   db: mongooseAdapter({
     url: process.env.MONGODB_URI || '',
+    disableIndexHints: true,
   }),
   email: resendAdapter({
     defaultFromAddress: 'dev@payloadcms.com',

@@ -38,6 +38,8 @@ export const Courses: CollectionConfig<'courses'> = {
       de: 'Seminare',
     },
   },
+  unique: ['slug'],
+
   access: {
     create: authenticated,
     delete: authenticated,
@@ -50,7 +52,7 @@ export const Courses: CollectionConfig<'courses'> = {
   defaultPopulate: {
     title: true,
     slug: true,
-    categories: true,
+    start: true,
     meta: {
       image: true,
       description: true,
@@ -92,8 +94,8 @@ export const Courses: CollectionConfig<'courses'> = {
       hasMany: false,
       relationTo: 'forms',
 
+      required: true,
       admin: { position: 'sidebar' },
-      defaultValue: '1',
     },
     {
       name: 'start',
@@ -167,37 +169,7 @@ export const Courses: CollectionConfig<'courses'> = {
           ],
           label: 'Content',
         },
-        {
-          fields: [
-            {
-              name: 'relatedCourses',
-              type: 'relationship',
-              admin: {
-                position: 'sidebar',
-              },
-              filterOptions: ({ id }) => {
-                return {
-                  id: {
-                    not_in: [id],
-                  },
-                }
-              },
-              hasMany: true,
-              relationTo: 'courses',
-            },
 
-            // {
-            //   name: 'categories',
-            //   type: 'relationship',
-            //   admin: {
-            //     position: 'sidebar',
-            //   },
-            //   hasMany: true,
-            //   relationTo: 'categories',
-            // },
-          ],
-          label: 'Meta',
-        },
         {
           name: 'meta',
           label: 'SEO',
