@@ -44,8 +44,6 @@ export default async function Course({ params: paramsPromise }: Args) {
   const url = '/courses/' + slug
   const course = await queryCourseBySlug({ slug })
   if (!course) return <PayloadRedirects url={url} />
-  /* @ts-ignore */
-  const cc = course.organizer?.mail
 
   return (
     <article className="pt-16 pb-16">
@@ -60,9 +58,28 @@ export default async function Course({ params: paramsPromise }: Args) {
 
       <div className="flex flex-col items-center gap-6 pt-8">
         <div className="container">
+          {/* @ts-ignore */}
           <RichText className="max-w-[48rem] mx-auto" data={course.content} enableGutter={false} />
           {/* @ts-ignore */}
-          {course.form && <FormBlock form={course.form} subject={course.title} cc={cc} />}
+          {course.categories &&
+            typeof course.categories[0] !== 'string' &&
+            course.categories[0].description && (
+              <RichText
+                className="max-w-[48rem] mx-auto"
+                data={course.categories[0].description}
+                enableGutter={false}
+              />
+            )}
+
+          {/* @ts-ignore */}
+          {course.form && typeof course.form !== 'string' && (
+            <FormBlock
+              /* @ts-ignore */
+              form={course.form}
+              subject={course.title}
+              cc={typeof course.organizer !== 'string' ? course.organizer?.mail : undefined}
+            />
+          )}
         </div>
       </div>
     </article>

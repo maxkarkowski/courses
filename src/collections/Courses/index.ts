@@ -163,7 +163,7 @@ export const Courses: CollectionConfig<'courses'> = {
                 },
               }),
               label: false,
-              required: true,
+              required: false,
             },
           ],
           label: 'Content',

@@ -462,7 +462,7 @@ export interface Course {
   end?: string | null;
   organizer?: (string | null) | Organizer;
   categories?: (string | Category)[] | null;
-  content: {
+  content?: {
     root: {
       type: string;
       children: {
@@ -476,7 +476,7 @@ export interface Course {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   meta?: {
     title?: string | null;
     /**

@@ -25,17 +25,17 @@ import { Organizers } from './collections/Organizers'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const database = process.env.VERCEL
-  ? vercelPostgresAdapter({
-      pool: {
-        connectionString: process.env.POSTGRES_URL || '',
-      },
-    })
-  : postgresAdapter({
-      pool: {
-        connectionString: process.env.DATABASE_URI || '',
-      },
-    })
+// const database = process.env.VERCEL
+//   ? vercelPostgresAdapter({
+//       pool: {
+//         connectionString: process.env.POSTGRES_URL || '',
+//       },
+//     })
+//   : postgresAdapter({
+//       pool: {
+//         connectionString: process.env.DATABASE_URI || '',
+//       },
+//     })
 
 export default buildConfig({
   i18n: { supportedLanguages: { de, en } },
