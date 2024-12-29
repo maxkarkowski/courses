@@ -10,18 +10,33 @@ import Link from 'next/link'
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = data?.navItems || []
-
+  console.log('navItems', navItems)
   return (
     <nav className="flex gap-3 items-center" key="nav">
-      {navItems.map(({ link }, i) => {
+      {navItems.map(({ link, subNavItems }, i) => {
+        console.log('link', subNavItems)
         return (
-          <CMSLink
-            key={i}
-            {...link}
-            size="lg"
-            appearance="link"
-            className="hover:no-underline cursor-pointer "
-          />
+          <div key={i}>
+            <CMSLink
+              {...link}
+              size="lg"
+              appearance="link"
+              className="hover:no-underline cursor-pointer "
+            />
+            {subNavItems && (
+              <div className="flex gap-3">
+                {subNavItems.map((subNavItem, a) => (
+                  <CMSLink
+                    key={a}
+                    {...subNavItem.link}
+                    size="lg"
+                    appearance="link"
+                    className="hover:no-underline cursor-pointer "
+                  />
+                ))}
+              </div>
+            )}
+          </div>
         )
       })}
       <Button asChild>
