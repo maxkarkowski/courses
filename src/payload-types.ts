@@ -418,6 +418,21 @@ export interface ArchiveBlock {
 export interface Category {
   id: string;
   title: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
   relatedCourses?: {
     docs?: (string | Course)[] | null;
     hasNextPage?: boolean | null;
@@ -998,6 +1013,7 @@ export interface FormBlockSelect<T extends boolean = true> {
  */
 export interface CategoriesSelect<T extends boolean = true> {
   title?: T;
+  description?: T;
   relatedCourses?: T;
   parent?: T;
   breadcrumbs?:
