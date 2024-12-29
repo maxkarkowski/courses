@@ -29,9 +29,9 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   }, [headerTheme])
 
   return (
-    <header className=" relative z-20  bg-slate-600 " {...(theme ? { 'data-theme': 'dark' } : {})}>
+    <header className=" relative z-20   " {...(theme ? { 'data-theme': 'dark' } : {})}>
       <div className="container py-8 flex justify-between">
-        <Link href="/">
+        <Link href="/" className="cursor-pointer">
           <Logo loading="eager" priority="high" className="invert-0 dark:invert-0" />
         </Link>
         <HeaderNav data={data} />
