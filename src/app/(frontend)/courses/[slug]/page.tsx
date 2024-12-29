@@ -12,6 +12,7 @@ import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { FormBlock } from '@/blocks/Form/Component'
+import { formatDateTime } from '@/utilities/formatDateTime'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -45,6 +46,7 @@ export default async function Course({ params: paramsPromise }: Args) {
   const course = await queryCourseBySlug({ slug })
   if (!course) return <PayloadRedirects url={url} />
 
+  const subject = `${course.title} am ${formatDateTime(course.start)}`
   return (
     <article className="pt-16 pb-16">
       <PageClient />
@@ -76,7 +78,7 @@ export default async function Course({ params: paramsPromise }: Args) {
             <FormBlock
               /* @ts-ignore */
               form={course.form}
-              subject={course.title}
+              subject={subject}
               cc={typeof course.organizer !== 'string' ? course.organizer?.mail : undefined}
             />
           )}
