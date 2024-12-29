@@ -2,6 +2,7 @@ import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { redirectsPlugin } from '@payloadcms/plugin-redirects'
+import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { Plugin } from 'payload'
 import { revalidateRedirects } from '@/hooks/revalidateRedirects'
@@ -94,22 +95,31 @@ export const plugins: Plugin[] = [
   }),
 
   payloadCloudPlugin(),
-  s3Storage({
+  uploadthingStorage({
     collections: {
-      media: {
-        prefix: 'media',
-      },
+      media: true,
     },
-    bucket: process.env.S3_BUCKET || '',
-    config: {
-      credentials: {
-        accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
-        secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
-      },
-      region: process.env.S3_REGION,
-      endpoint: process.env.S3_ENDPOINT,
-      forcePathStyle: true,
-      // ... Other S3 configuration
+    options: {
+      token: process.env.UPLOADTHING_TOKEN,
+      acl: 'public-read',
     },
   }),
+  // s3Storage({
+  //   collections: {
+  //     media: {
+  //       prefix: 'media',
+  //     },
+  //   },
+  //   bucket: process.env.S3_BUCKET || '',
+  //   config: {
+  //     credentials: {
+  //       accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
+  //       secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+  //     },
+  //     region: process.env.S3_REGION,
+  //     endpoint: process.env.S3_ENDPOINT,
+  //     forcePathStyle: true,
+  //     // ... Other S3 configuration
+  //   },
+  // }),
 ]
