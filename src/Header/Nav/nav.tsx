@@ -1,8 +1,6 @@
 import { CMSLink } from '@/components/Link'
-import { Button } from '@/components/ui/button'
 import type { Header as HeaderType } from '@/payload-types'
 import { cn } from '@/utilities/cn'
-import Link from 'next/link'
 
 export const Nav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = data?.navItems || []
@@ -11,8 +9,8 @@ export const Nav: React.FC<{ data: HeaderType }> = ({ data }) => {
 
   return (
     <>
-      <div className="mx-auto w-full p-4">
-        <div className="flex flex-col md:flex-row gap-6 items-start justify-center">
+      <div className="mx-auto w-full py-4 ">
+        <div className="flex flex-col md:flex-row gap-4 items-start justify-center md:justify-start">
           {navItems.map(({ link, subNavItems }, i) => {
             return (
               <div key={i}>
@@ -32,24 +30,20 @@ export const Nav: React.FC<{ data: HeaderType }> = ({ data }) => {
                   />
                 )}
                 {subNavItems && (
-                  <div className="flex flex-col gap-4 ml-2">
-                    {subNavItems.map((subNavItem, a) => (
-                      <CMSLink
-                        {...subNavItem.link}
-                        key={a}
-                        size="lg"
-                        appearance="link"
-                        className="hover:no-underline cursor-pointer text-lg"
-                      />
-                    ))}
+                  <div className="flex flex-col gap-4">
+                    <ul className="grid w-full gap-3 p-4 md:p-0 grid-cols-2 ">
+                      {subNavItems.map(({ link, description }, a) => (
+                        <li key={a}>
+                          <CMSLink {...link} className="flex" appearance="link" />
+                          {description && <p className="text-sm italic">{description}</p>}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 )}
               </div>
             )
           })}
-          {/* <Button asChild className="">
-            <Link href="/courses">Kurse</Link>
-          </Button> */}
         </div>
       </div>
     </>

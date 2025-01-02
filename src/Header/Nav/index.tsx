@@ -18,85 +18,16 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
-import Link from 'next/link'
-import { Menu } from 'lucide-react'
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = data?.navItems || []
-  const [isOpen, setIsOpen] = useState(true)
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
   return (
     <>
-      <div className="flex gap-3 items-center hidden">
-        <Drawer>
-          <DrawerTrigger asChild>
-            <Button variant="outline" className="flex gap-3 text-white">
-              Menu{' '}
-              <SelectPrimitive.Icon asChild>
-                <Menu className="h-6 w-6 " />
-              </SelectPrimitive.Icon>
-            </Button>
-          </DrawerTrigger>
-          <DrawerContent>
-            <div className="mx-auto w-full">
-              <DrawerHeader>
-                <DrawerTitle>Menu</DrawerTitle>
-              </DrawerHeader>
-              <div className="p-4 pt-0">
-                <div className="flex flex-col gap-4">
-                  {navItems.map(({ link, subNavItems }, i) => {
-                    return (
-                      <div key={i}>
-                        {subNavItems && subNavItems.length > 0 ? (
-                          <CMSLink
-                            {...link}
-                            size="lg"
-                            appearance="link"
-                            className="hover:no-underline cursor-pointer mb-4 "
-                          />
-                        ) : (
-                          <CMSLink
-                            {...link}
-                            size="lg"
-                            appearance="link"
-                            className="hover:no-underline cursor-pointer "
-                          />
-                        )}
-                        {subNavItems && (
-                          <div className="flex flex-col gap-6 ml-2">
-                            {subNavItems.map((subNavItem, a) => (
-                              <CMSLink
-                                {...subNavItem.link}
-                                key={a}
-                                size="lg"
-                                appearance="link"
-                                className="hover:no-underline cursor-pointer "
-                              />
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    )
-                  })}
-                </div>
-                <Button asChild className="mt-5">
-                  <Link href="/courses">Kurse</Link>
-                </Button>
-              </div>
-            </div>
-          </DrawerContent>
-        </Drawer>
-      </div>
-
-      <NavigationMenu className="">
+      <NavigationMenu className="hidden md:flex">
         <div className="flex gap-3 items-center" key="nav">
           <NavigationMenuList>
             {navItems.map(({ link, subNavItems }, i) => {
@@ -121,18 +52,23 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                   )}
                   {subNavItems && (
                     <NavigationMenuContent className="p-4 flex flex-col">
-                      {subNavItems.map(({ link }, a) => (
-                        <CMSLink {...link} key={a} className="flex" />
-                      ))}
+                      <ul className="grid gap-3 p-4 md:w-[500px] md:grid-cols-2  ">
+                        {subNavItems.map(({ link, description }, a) => (
+                          <li key={a}>
+                            <CMSLink {...link} className="flex" />
+                            {description && <p className="text-sm italic">{description}</p>}
+                          </li>
+                        ))}
+                      </ul>
                     </NavigationMenuContent>
                   )}
                 </NavigationMenuItem>
               )
             })}
           </NavigationMenuList>
-          <Button asChild>
+          {/* <Button asChild>
             <Link href="/courses">Kurse</Link>
-          </Button>
+          </Button> */}
         </div>
       </NavigationMenu>
     </>

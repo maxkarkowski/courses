@@ -23,6 +23,7 @@ export const Header: GlobalConfig = {
             link({
               appearances: false,
             }),
+            { type: 'textarea', name: 'description', required: false },
           ],
         },
       ],

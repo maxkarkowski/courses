@@ -45,11 +45,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           <Logo loading="eager" priority="high" className="invert-0 dark:invert-0" />
         </Link>
         {/* <HeaderNav data={data} /> */}
-        <Button
-          onClick={toggleMenu}
-          variant="outline"
-          className="flex gap-3 text-black dark:text-white"
-        >
+        <Button onClick={toggleMenu} variant="default" className="flex gap-3  ">
           Menü
           <SelectPrimitive.Icon asChild>
             <Menu className="h-6 w-6 " />
@@ -57,7 +53,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
         </Button>
       </div>
       <div
-        className={`bg-accent-foreground dark:bg-accent w-full transition-all overflow-hidden flex ${isOpen ? 'h-auto' : 'h-0'}`}
+        className={` bg-accent-foreground dark:bg-accent w-full transition-all overflow-hidden flex ${isOpen ? 'h-auto' : 'h-0'}`}
       >
         <div className="container text-white">
           <Nav data={data} />
