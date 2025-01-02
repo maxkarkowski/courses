@@ -12,6 +12,7 @@ import { HeaderNav } from './Nav'
 import { Button } from '@/components/ui/button'
 import { Menu } from 'lucide-react'
 import { Nav } from './Nav/nav'
+import useMediaQuery from '@/hooks/useMediaQuery'
 
 interface HeaderClientProps {
   data: Header
@@ -45,7 +46,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           <Logo loading="eager" priority="high" className="invert-0 dark:invert-0" />
         </Link>
         {/* <HeaderNav data={data} /> */}
-        <Button onClick={toggleMenu} variant="default" className="flex gap-3  ">
+        <Button onClick={toggleMenu} variant="default" className={`flex md:hidden gap-3  `}>
           Menü
           <SelectPrimitive.Icon asChild>
             <Menu className="h-6 w-6 " />
@@ -53,7 +54,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
         </Button>
       </div>
       <div
-        className={` bg-accent-foreground dark:bg-accent w-full transition-all overflow-hidden flex ${isOpen ? 'h-auto' : 'h-0'}`}
+        className={`${isOpen ? 'h-auto' : 'h-0'} md:h-auto bg-accent-foreground dark:bg-accent w-full transition-all overflow-hidden flex `}
       >
         <div className="container text-white">
           <Nav data={data} />
