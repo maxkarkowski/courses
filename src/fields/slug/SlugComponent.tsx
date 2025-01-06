@@ -1,6 +1,7 @@
 'use client'
 import React, { useCallback, useEffect } from 'react'
 import { TextFieldClientProps } from 'payload'
+import moment from 'moment'
 
 import { useField, Button, TextInput, FieldLabel, useFormFields, useForm } from '@payloadcms/ui'
 
@@ -37,7 +38,15 @@ export const SlugComponent: React.FC<SlugComponentProps> = ({
 
   // The value of the field we're listening to for the slug
   const targetFieldValue = useFormFields(([fields]) => {
-    return fieldToUse.map((field) => fields[field]?.value).join('-') as string
+    return fieldToUse
+      .map((field) => {
+        const fieldValue = fields[field]?.value
+        if (typeof fieldValue === 'string' && moment(fieldValue, moment.ISO_8601, true).isValid()) {
+          return moment(fieldValue).format('YYYY-MM-DD')
+        }
+        return fieldValue
+      })
+      .join('-') as string
   })
 
   useEffect(() => {

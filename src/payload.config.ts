@@ -1,6 +1,4 @@
 // storage-adapter-import-placeholder
-import { postgresAdapter } from '@payloadcms/db-postgres'
-import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
 import { en } from '@payloadcms/translations/languages/en'
 import { de } from '@payloadcms/translations/languages/de'
 import sharp from 'sharp' // sharp-import
@@ -24,18 +22,6 @@ import { Organizers } from './collections/Organizers'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-
-// const database = process.env.VERCEL
-//   ? vercelPostgresAdapter({
-//       pool: {
-//         connectionString: process.env.POSTGRES_URL || '',
-//       },
-//     })
-//   : postgresAdapter({
-//       pool: {
-//         connectionString: process.env.DATABASE_URI || '',
-//       },
-//     })
 
 export default buildConfig({
   i18n: { supportedLanguages: { de, en } },

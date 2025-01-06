@@ -219,7 +219,7 @@ export const Courses: CollectionConfig<'courses'> = {
       },
     },
 
-    ...slugField(['title', 'start']),
+    ...slugField(['start', 'title']),
   ],
 
   hooks: {
