@@ -460,6 +460,7 @@ export interface Course {
   form: string | Form;
   start: string;
   end?: string | null;
+  'inquiry-url'?: string | null;
   organizer?: (string | null) | Organizer;
   categories?: (string | Category)[] | null;
   content?: {
@@ -673,6 +674,7 @@ export interface Organizer {
   id: string;
   title: string;
   mail: string;
+  url?: string | null;
   relatedCourses?: {
     docs?: (string | Course)[] | null;
     hasNextPage?: boolean | null;
@@ -1037,6 +1039,7 @@ export interface CoursesSelect<T extends boolean = true> {
   form?: T;
   start?: T;
   end?: T;
+  'inquiry-url'?: T;
   organizer?: T;
   categories?: T;
   content?: T;
@@ -1061,6 +1064,7 @@ export interface CoursesSelect<T extends boolean = true> {
 export interface OrganizersSelect<T extends boolean = true> {
   title?: T;
   mail?: T;
+  url?: T;
   relatedCourses?: T;
   updatedAt?: T;
   createdAt?: T;

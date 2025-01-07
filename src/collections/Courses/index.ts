@@ -25,6 +25,7 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { slugField } from '@/fields/slug'
+import { isValidURL } from '@/utilities/validUrl'
 
 export const Courses: CollectionConfig<'courses'> = {
   slug: 'courses',
@@ -121,6 +122,19 @@ export const Courses: CollectionConfig<'courses'> = {
           displayFormat: 'd.MMMM.yyyy HH:mm',
           timeFormat: 'HH:mm',
         },
+      },
+    },
+    {
+      name: 'inquiry-url',
+      type: 'text',
+      label: 'Orga URL',
+      required: false,
+      admin: {
+        position: 'sidebar',
+      },
+      validate: (value) => {
+        if (!value) return true // Allow empty values
+        return isValidURL(value) || 'Invalid URL'
       },
     },
     {

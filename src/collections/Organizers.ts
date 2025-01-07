@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
+import { isValidURL } from '@/utilities/validUrl'
 
 export const Organizers: CollectionConfig = {
   slug: 'organizers',
@@ -34,6 +35,15 @@ export const Organizers: CollectionConfig = {
       name: 'mail',
       type: 'email',
       required: true,
+    },
+    {
+      name: 'url',
+      type: 'text',
+      required: false,
+      validate: (value) => {
+        if (!value) return true // Allow empty values
+        return isValidURL(value) || 'Invalid URL'
+      },
     },
     { name: 'relatedCourses', type: 'join', collection: 'courses', on: 'organizer' },
   ],
