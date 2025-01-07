@@ -13,16 +13,23 @@ import type {
   CallToActionBlock as CTABlockProps,
   MediaBlock as MediaBlockProps,
   TrainerBlock as TrainerBlockProps,
+  TeaserBlock as TeaserBlockProps,
 } from '@/payload-types'
 import { BannerBlock } from '@/blocks/Banner/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { TrainerBlock } from '@/blocks/Trainer/Component'
+import { TeaserBlock } from '@/blocks/Teaser/Component'
 import { cn } from '@/utilities/cn'
 
 type NodeTypes =
   | DefaultNodeTypes
   | SerializedBlockNode<
-      CTABlockProps | MediaBlockProps | BannerBlockProps | CodeBlockProps | TrainerBlockProps
+      | CTABlockProps
+      | MediaBlockProps
+      | BannerBlockProps
+      | CodeBlockProps
+      | TrainerBlockProps
+      | TeaserBlockProps
     >
 
 const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) => ({
@@ -42,6 +49,7 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
     code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
     cta: ({ node }) => <CallToActionBlock {...node.fields} />,
     trainerBlock: ({ node }) => <TrainerBlock {...node.fields} />,
+    teaserBlock: ({ node }) => <TeaserBlock {...node.fields} />,
   },
 })
 

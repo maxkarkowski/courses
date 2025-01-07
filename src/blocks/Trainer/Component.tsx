@@ -24,7 +24,7 @@ export const TrainerBlock: React.FC<Props> = (props) => {
           {richText && <RichText className="mb-0" data={richText} enableGutter={false} />}
         </div>
         <div className="flex flex-col gap-2 max-w-[30rem] self-center">
-          <Media imgClassName={cn('', imgClassName)} resource={media} src={staticImage} />
+          <Media imgClassName={cn('rounded', imgClassName)} resource={media} src={staticImage} />
           {caption && (
             <div
               className={cn(

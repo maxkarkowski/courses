@@ -21,6 +21,7 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { TrainerBlock } from '../../blocks/Trainer/config'
+import { TeaserBlock } from '../../blocks/Teaser/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -86,7 +87,15 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, TrainerBlock, MediaBlock, Archive, FormBlock],
+              blocks: [
+                CallToAction,
+                Content,
+                TeaserBlock,
+                TrainerBlock,
+                MediaBlock,
+                Archive,
+                FormBlock,
+              ],
               required: true,
               admin: {
                 initCollapsed: true,
