@@ -4,11 +4,12 @@ import RichText from '@/components/RichText'
 
 import { Card } from '../../components/Card'
 import { Course } from '@/payload-types'
+import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
 export type RelatedCoursesProps = {
   className?: string
   docs?: Course[]
-  introContent?: any
+  introContent?: SerializedEditorState
 }
 
 export const RelatedCourses: React.FC<RelatedCoursesProps> = (props) => {

@@ -13,7 +13,6 @@ import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { FormBlock } from '@/blocks/Form/Component'
 import { formatDateTime } from '@/utilities/formatDateTime'
-import { dynamic } from '../page'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -63,13 +62,11 @@ export default async function Course({ params: paramsPromise }: Args) {
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-6">
             <div>
-              {/* @ts-ignore */}
               {course.content && typeof course.content !== 'string' && (
                 <>
                   <RichText className="" data={course.content} enableGutter={false} />
                 </>
               )}
-              {/* @ts-ignore */}
               {course.categories &&
                 typeof course.categories[0] !== 'string' &&
                 course.categories[0].description && (
@@ -82,12 +79,11 @@ export default async function Course({ params: paramsPromise }: Args) {
                 )}
             </div>
             <div>
-              {/* @ts-ignore */}
               {course.form && typeof course.form !== 'string' && (
                 <div className="max-w-[48rem] mx-auto">
                   <h4 className="text-2xl font-bold text-accent-foreground mb-4">Anfrage</h4>
                   <FormBlock
-                    /* @ts-ignore */
+                    /* @ts-expect-error: handles form */
                     form={course.form}
                     subject={subject}
                     cc={typeof course.organizer !== 'string' ? course.organizer?.mail : undefined}

@@ -29,7 +29,7 @@ export const Nav: React.FC<{ data: HeaderType }> = ({ data }) => {
                     className={cn(mainMenuClass, 'mb-0')}
                   />
                 )}
-                {subNavItems && (
+                {subNavItems && subNavItems.length > 0 && (
                   <div className="flex flex-col gap-4">
                     <ul className="grid w-full gap-3 p-4 md:p-0 grid-cols-2 ">
                       {subNavItems.map(({ link, description }, a) => (

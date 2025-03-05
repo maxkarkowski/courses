@@ -1,10 +1,8 @@
 import { cn } from '@/utilities/cn'
 import RichText from '@/components/RichText'
-import { CMSLink } from '../../components/Link'
 import type { TeaserBlock as TeaserBlockProps } from '@/payload-types'
 import { ImageMedia } from '@/components/Media/ImageMedia'
 import Link from 'next/link'
-import { Value } from '../Form/Component'
 
 export const TeaserBlock: React.FC<TeaserBlockProps> = (props) => {
   const { columns } = props

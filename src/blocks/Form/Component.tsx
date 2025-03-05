@@ -1,5 +1,5 @@
 'use client'
-import type { Form as FormType } from '@payloadcms/plugin-form-builder/types'
+import type { FormFieldBlock, Form as FormType } from '@payloadcms/plugin-form-builder/types'
 
 import { useRouter } from 'next/navigation'
 import React, { useCallback, useState } from 'react'
@@ -8,19 +8,8 @@ import RichText from '@/components/RichText'
 import { Button } from '@/components/ui/button'
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
-import { buildInitialFormState } from './buildInitialFormState'
 import { fields } from './fields'
 import { getClientSideURL } from '@/utilities/getURL'
-
-export type Value = unknown
-
-export interface Property {
-  [key: string]: Value
-}
-
-export interface Data {
-  [key: string]: Property | Property[]
-}
 
 export type FormBlockType = {
   blockName?: string
@@ -33,8 +22,6 @@ export type FormBlockType = {
 export const FormBlock: React.FC<
   {
     id?: string
-    subject?: Value
-    cc?: Value
   } & FormBlockType
 > = (props) => {
   const {
@@ -42,12 +29,10 @@ export const FormBlock: React.FC<
     form: formFromProps,
     form: { id: formID, confirmationMessage, confirmationType, redirect, submitButtonLabel } = {},
     introContent,
-    subject,
-    cc,
   } = props
 
   const formMethods = useForm({
-    defaultValues: buildInitialFormState(formFromProps.fields),
+    defaultValues: formFromProps.fields,
   })
   const {
     control,
@@ -62,22 +47,16 @@ export const FormBlock: React.FC<
   const router = useRouter()
 
   const onSubmit = useCallback(
-    (data: Data) => {
+    (data: FormFieldBlock[]) => {
       let loadingTimerID: ReturnType<typeof setTimeout>
       const submitForm = async () => {
         setError(undefined)
+
         const dataToSend = Object.entries(data).map(([name, value]) => ({
           field: name,
           value,
         }))
 
-        // Add subject and cc if available
-        if (subject) {
-          dataToSend.push({ field: 'subject', value: subject as Property })
-        }
-        if (cc) {
-          dataToSend.push({ field: 'cc', value: cc as Property })
-        }
         // delay loading indicator by 1s
         loadingTimerID = setTimeout(() => {
           setIsLoading(true)
@@ -135,7 +114,7 @@ export const FormBlock: React.FC<
   )
 
   return (
-    <div className="">
+    <div className="container lg:max-w-[48rem]">
       {enableIntro && introContent && !hasSubmitted && (
         <RichText className="mb-8 lg:mb-12" data={introContent} enableGutter={false} />
       )}
@@ -152,7 +131,8 @@ export const FormBlock: React.FC<
                 {formFromProps &&
                   formFromProps.fields &&
                   formFromProps.fields?.map((field, index) => {
-                    const Field: React.FC<any> = fields?.[field.blockType]
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const Field: React.FC<any> = fields?.[field.blockType as keyof typeof fields]
                     if (Field) {
                       return (
                         <div className="mb-6 last:mb-0" key={index}>

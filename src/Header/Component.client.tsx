@@ -8,11 +8,9 @@ import * as SelectPrimitive from '@radix-ui/react-select'
 import type { Header } from '@/payload-types'
 
 import { Logo } from '@/components/Logo/Logo'
-import { HeaderNav } from './Nav'
 import { Button } from '@/components/ui/button'
 import { Menu } from 'lucide-react'
 import { Nav } from './Nav/nav'
-import useMediaQuery from '@/hooks/useMediaQuery'
 
 interface HeaderClientProps {
   data: Header

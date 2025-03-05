@@ -6,6 +6,7 @@ import React, { Fragment } from 'react'
 
 import { Course } from '@/payload-types'
 import { formatDateTime } from '@/utilities/formatDateTime'
+import { Media } from '../Media'
 
 export type CardCourseData = Pick<
   Course,
@@ -36,10 +37,10 @@ export const Card: React.FC<{
       )}
       ref={card.ref}
     >
-      {/* <div className="relative w-full ">
+      <div className="relative w-full ">
         {!metaImage && <div className="">No image</div>}
         {metaImage && typeof metaImage !== 'string' && <Media resource={metaImage} size="33vw" />}
-      </div> */}
+      </div>
       <div className="p-4">
         {showCategories && hasCategories && (
           <div className="uppercase text-sm mb-4">
