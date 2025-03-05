@@ -1,19 +1,11 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 
-import type { Header as HeaderType, Page } from '@/payload-types'
-import * as SelectPrimitive from '@radix-ui/react-select'
+import type { Header as HeaderType } from '@/payload-types'
 
 import { CMSLink } from '@/components/Link'
-import { Button } from '@/components/ui/button'
-import {
-  Drawer,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from '@/components/ui/drawer'
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -66,9 +58,6 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
               )
             })}
           </NavigationMenuList>
-          {/* <Button asChild>
-            <Link href="/courses">Kurse</Link>
-          </Button> */}
         </div>
       </NavigationMenu>
     </>

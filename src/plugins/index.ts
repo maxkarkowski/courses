@@ -26,7 +26,7 @@ export const plugins: Plugin[] = [
   redirectsPlugin({
     collections: ['pages', 'courses'],
     overrides: {
-      // @ts-expect-error
+      // @ts-expect-error: @toDo: i dont know why i did this
       fields: ({ defaultFields }) => {
         return defaultFields.map((field) => {
           if ('name' in field && field.name === 'from') {
