@@ -45,6 +45,25 @@ export const Organizers: CollectionConfig = {
         return isValidURL(value) || 'Invalid URL'
       },
     },
+    {
+      name: 'adress',
+      type: 'group',
+      fields: [
+        { name: 'street', type: 'text' },
+        {
+          type: 'row',
+          fields: [
+            { name: 'zip', type: 'text' },
+            { name: 'city', type: 'text' },
+          ],
+        },
+      ],
+      admin: {
+        components: {
+          Cell: '/components/Payload/AdressCell',
+        },
+      },
+    },
     { name: 'relatedCourses', type: 'join', collection: 'courses', on: 'organizer' },
   ],
 }

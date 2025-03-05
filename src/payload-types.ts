@@ -717,6 +717,11 @@ export interface Organizer {
   title: string;
   mail: string;
   url?: string | null;
+  adress?: {
+    street?: string | null;
+    zip?: string | null;
+    city?: string | null;
+  };
   relatedCourses?: {
     docs?: (string | Course)[] | null;
     hasNextPage?: boolean | null;
@@ -1134,6 +1139,13 @@ export interface OrganizersSelect<T extends boolean = true> {
   title?: T;
   mail?: T;
   url?: T;
+  adress?:
+    | T
+    | {
+        street?: T;
+        zip?: T;
+        city?: T;
+      };
   relatedCourses?: T;
   updatedAt?: T;
   createdAt?: T;
