@@ -3,6 +3,8 @@ import type { Metadata } from 'next'
 import { cn } from 'src/utilities/cn'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
+import { Roboto_Serif } from 'next/font/google'
+
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
@@ -17,11 +19,20 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
 
+const accent = Roboto_Serif({
+  subsets: ['latin'],
+  variable: '--font-accent',
+})
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
   return (
-    <html className={cn(GeistSans.variable, GeistMono.variable)} lang="de" suppressHydrationWarning>
+    <html
+      className={cn(GeistSans.variable, GeistMono.variable, accent.variable)}
+      lang="de"
+      suppressHydrationWarning
+    >
       <head>
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />

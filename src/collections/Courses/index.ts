@@ -150,6 +150,8 @@ export const Courses: CollectionConfig<'courses'> = {
       name: 'categories',
       type: 'relationship',
       relationTo: 'categories',
+      index: true,
+      localized: true,
       hasMany: true,
       admin: {
         position: 'sidebar',

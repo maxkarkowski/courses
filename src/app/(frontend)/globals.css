@@ -86,3 +86,7 @@ html[data-theme='dark'],
 html[data-theme='light'] {
   opacity: initial;
 }
+
+h1 {
+  font-family: var(--font-accent);
+}

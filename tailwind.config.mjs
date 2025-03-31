@@ -93,6 +93,7 @@ export default {
       fontFamily: {
         mono: ['var(--font-geist-mono)'],
         sans: ['var(--font-geist-sans)'],
+        accent: ['var(--font-accent)'],
       },
       keyframes: {
         'accordion-down': {

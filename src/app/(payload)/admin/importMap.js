@@ -28,7 +28,7 @@ import { MetaDescriptionComponent as MetaDescriptionComponent_a8a977ebc872c5d5ea
 import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { SlugComponent as SlugComponent_92cc057d0a2abb4f6cf0307edf59f986 } from '@/fields/slug/SlugComponent'
 import { BlocksFeatureClient as BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
-import { default as default_a7d588bf7abb02f843dc09cc91f15a0d } from 'src/components/Payload/AdressCell'
+import { default as default_a7d588bf7abb02f843dc09cc91f15a0d } from '../../../components/Payload/AdressCell'
 import { RowLabel as RowLabel_ec255a65fa6fa8d1faeb09cf35284224 } from '@/Header/RowLabel'
 import { RowLabel as RowLabel_1f6ff6ff633e3695d348f4f3c58f1466 } from '@/Footer/RowLabel'
 import { default as default_d0c6f2c49678a1286b87139fe6d52dc4 } from '@/components/Payload/WelcomeMessage'

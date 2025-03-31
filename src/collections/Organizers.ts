@@ -64,6 +64,6 @@ export const Organizers: CollectionConfig = {
         },
       },
     },
-    { name: 'relatedCourses', type: 'join', collection: 'courses', on: 'organizer' },
+    // { name: 'relatedCourses', type: 'join', collection: 'courses', on: 'organizer' },
   ],
 }
