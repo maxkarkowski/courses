@@ -10,7 +10,7 @@ export type Props = {
 export const CollectionArchive: React.FC<Props> = (props) => {
   const { courses } = props
   return (
-    <div className={cn('container')}>
+    <div className={cn('container mx-auto')}>
       <div>
         <div className="flex gap-8 flex-col">
           {courses?.map((result, index) => {

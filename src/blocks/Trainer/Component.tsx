@@ -18,7 +18,7 @@ export const TrainerBlock: React.FC<Props> = (props) => {
   if (media && typeof media === 'object') caption = media.caption
 
   return (
-    <div className="container">
+    <div className="container mx-auto">
       <div className="bg-card rounded border-border border  flex flex-col lg:flex-row justify-between">
         <div className="flex flex-row items-start p-4 justify-start self-start">
           {richText && <RichText className="mb-0" data={richText} enableGutter={false} />}

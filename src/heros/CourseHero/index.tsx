@@ -22,7 +22,7 @@ export const CourseHero: React.FC<{
           />
         </>
       )}
-      <div className="container ">
+      <div className="container mx-auto ">
         <div className="">
           <div className="uppercase text-sm mb-6">
             {start && <time dateTime={start}>{formatDateTime(start)}</time>}

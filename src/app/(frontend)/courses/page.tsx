@@ -30,15 +30,15 @@ export default async function Page() {
   })
 
   return (
-    <div className="pt-24 pb-24">
+    <div className="pt-8 pb-24">
       <PageClient />
-      <div className="container mb-16">
+      <div className="container mx-auto mb-16">
         <div className="prose dark:prose-invert max-w-none">
-          <h1>Seminare</h1>
+          <h1 className="text-2xl">Seminare</h1>
         </div>
       </div>
 
-      <div className="container mb-8">
+      <div className="container mx-auto mb-8">
         <PageRange
           collection="courses"
           currentPage={courses.page}
@@ -49,7 +49,7 @@ export default async function Page() {
 
       <CollectionArchive courses={courses.docs} />
 
-      <div className="container">
+      <div className="container mx-auto">
         {courses.totalPages > 1 && courses.page && (
           <Pagination page={courses.page} totalPages={courses.totalPages} />
         )}

@@ -59,7 +59,7 @@ export default async function Course({ params: paramsPromise }: Args) {
       <CourseHero course={course} />
 
       <div className="flex flex-col items-center gap-6">
-        <div className="container">
+        <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-6">
             <div>
               {course.content && typeof course.content !== 'string' && (

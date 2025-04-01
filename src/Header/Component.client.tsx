@@ -39,7 +39,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
   return (
     <header className=" relative z-20 dark:bg-emerald-800 dark:text-white bg-emerald-400 text-black      ">
-      <div className="container py-8 flex justify-between">
+      <div className="container mx-auto py-8 flex justify-between">
         <Link href="/" className="cursor-pointer">
           <Logo loading="eager" priority="high" className="invert-0 dark:invert-0" />
         </Link>
@@ -54,7 +54,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
       <div
         className={`${isOpen ? 'h-auto' : 'h-0'} md:h-auto bg-accent-foreground dark:bg-accent w-full transition-all overflow-hidden flex `}
       >
-        <div className="container text-white">
+        <div className="container mx-auto text-white">
           <Nav data={data} />
         </div>
       </div>
