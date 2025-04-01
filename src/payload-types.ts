@@ -80,11 +80,7 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {
-    categories: {
-      relatedCourses: 'courses';
-    };
-  };
+  collectionsJoins: {};
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
@@ -527,11 +523,6 @@ export interface Category {
       version: number;
     };
     [k: string]: unknown;
-  };
-  relatedCourses?: {
-    docs?: (string | Course)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
   };
   parent?: (string | null) | Category;
   breadcrumbs?:
@@ -1141,7 +1132,6 @@ export interface FormBlockSelect<T extends boolean = true> {
 export interface CategoriesSelect<T extends boolean = true> {
   title?: T;
   description?: T;
-  relatedCourses?: T;
   parent?: T;
   breadcrumbs?:
     | T

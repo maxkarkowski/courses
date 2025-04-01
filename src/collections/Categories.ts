@@ -54,6 +54,6 @@ export const Categories: CollectionConfig = {
       label: false,
       required: true,
     },
-    { name: 'relatedCourses', type: 'join', collection: 'courses', on: 'categories' },
+    // { name: 'relatedCourses', type: 'join', collection: 'courses', on: 'categories' },
   ],
 }
